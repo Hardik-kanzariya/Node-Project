@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background: white;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+td a:nth-child(1) {
+    background: #f0ad4e;
+}
+
+td a:nth-child(2) {
+    background: #d9534f;
+}
+
+td a:hover {
+    opacity: 0.8;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+    </style>
+    <h2 align="center">Add Task</h2>
+    <form method="post" action="/addTask">
+        <table align="center">
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" name="id" required /></td>
+            </tr>
+            <tr>
+                <td>Task:</td>
+                <td><input type="text" name="task" required /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add Task" /></td>
+            </tr>
+        </table>
+    </form>
+
+    <h1 align="center">To-Do List</h1>
+    <table border="1" align="center">
+        <tr>
+            <th>ID</th>
+            <th>Task</th>
+            <th>Action</th>
+        </tr>
+        <% tasks.forEach(task => { %>
+            <tr>
+                <td><%= task.id %></td>
+                <td><%= task.task %></td>
+                <td>
+                    <a href="/editTask/<%= task.id %>">Edit</a>
+                    <a href="/deleteTask/<%= task.id %>">Delete</a>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
