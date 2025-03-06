@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            color: #263238;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #0d47a1;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            border-top: 5px solid #0d47a1;
+            width: 50%;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            background-color: #bbdefb;
+        }
+
+        td input {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #90caf9;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background: #1e88e5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <h1>Edit Book</h1>
+        <form action="/edit/<%= book.id %>" method="post">
+            <table>
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" name="title" value="<%= book.title %>" required></td>
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td><input type="text" name="author" value="<%= book.author %>" required></td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td><input type="text" name="country" value="<%= book.country %>" required></td>
+                </tr>
+                <tr>
+                    <td>Language:</td>
+                    <td><input type="text" name="language" value="<%= book.language %>" required></td>
+                </tr>
+                <tr>
+                    <td>Genre:</td>
+                    <td><input type="text" name="genre" value="<%= book.genre %>" required></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td><input type="number" name="price" value="<%= book.price %>" required></td>
+                </tr>
+                <tr>
+                    <td>Published Year:</td>
+                    <td><input type="number" name="publishedYear" value="<%= book.publishedYear %>" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Update Book"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
