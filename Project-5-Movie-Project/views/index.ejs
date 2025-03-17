@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Management</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+body {
+    background-color: gray;
+}
+.container {
+    margin-top: 30px;
+}
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.btn-danger, .btn-primary {
+    width: 80px;
+}
+.rating {
+    font-size: 18px;
+    color: gold;
+}
+.nav-link {
+    margin-right: 10px;
+    color: black;
+}
+/* Navbar Styles */
+.navbar {
+    background-color: #6a3d3d;
+    height: 60px;
+}
+
+.navbar-nav{
+    margin-bottom: 27px;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f8f9fa !important;
+    transition: color 0.3s;
+    margin-bottom: 27px;
+}
+
+.navbar-brand:hover {
+    color: #ffcc00 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #f8f9fa !important;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler:focus, .navbar-toggler-icon:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-color: transparent;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+    }
+    .navbar-nav .nav-link {
+        padding: 10px;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Movie Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Movies</a></li>   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="movieCarousel" class="carousel slide mt-3 container" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1740648315720_holluwoodgateweb.jpg"
+                    class="d-block" alt="Movie Image">
+            </div>
+            <div class="carousel-item">
+                <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1741872509947_15marnosferatupreviewweb.jpg"
+                    class="d-block" alt="Movie Image">
+            </div>
+            <div class="carousel-item">
+                <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1740649028177_lightbreaksweb.jpg"
+                    class="d-block " alt="Movie Image">
+            </div>
+            <div class="carousel-item">
+                <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1741872182132_15martheseedofthesacredfigweb.jpg"
+                    class="d-block " alt="Movie Image">
+            </div>
+            <div class="carousel-item">
+                <img src="https://assets-in-gm.bmscdn.com/promotions/cms/creatives/1726036566435_playcardnewweb.jpg"
+                    class="d-block " alt="Movie Image">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- Movie Form -->
+        <div class="card p-4 mb-4">
+            <h3 class="text-center">Add New Movie</h3>
+            <form action="/add-movie" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input type="text" name="title" class="form-control" placeholder="Title" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="director" class="form-control" placeholder="Director" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="genre" class="form-control" placeholder="Genre" required>
+                </div>
+                <div class="mb-3">
+                    <input type="number" name="year" class="form-control" placeholder="Year" required>
+                </div>
+
+                <!-- Rating Dropdown -->
+                <div class="mb-3">
+                    <label class="form-label">Rating</label>
+                    <select name="rating" class="form-control" required>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <input type="file" name="poster" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success w-100">Add Movie</button>
+            </form>
+        </div>
+
+        <!-- Movie List -->
+        <div class="row">
+            <% allMovies.forEach((movie, index) => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <% if (movie.poster) { %>
+                            <img src="<%= movie.poster %>" class="card-img-top" alt="<%= movie.title %>">
+                        <% } else { %>
+                            <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="No Poster">
+                        <% } %>
+                        <div class="card-body">
+                            <h4 class="card-title"><%= movie.title %></h4>
+                            <p class="card-text"><strong>Director:</strong> <%= movie.director %></p>
+                            <p class="card-text"><strong>Genre:</strong> <%= movie.genre %></p>
+                            <p class="card-text"><strong>Year:</strong> <%= movie.year %></p>
+
+                            <!-- Star Rating -->
+                            <p class="card-text">
+                                <strong>Rating:</strong>
+                                <span class="rating">
+                                    <% for (let i = 0; i < movie.rating; i++) { %> ⭐ <% } %>
+                                </span>
+                            </p>
+
+                            <div class="d-flex justify-content-between">
+                                <a href="/edit-movie/<%= movie.id %>" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="/delete-movie/<%= movie.id %>" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
