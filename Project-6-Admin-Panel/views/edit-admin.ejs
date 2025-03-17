@@ -1,0 +1,120 @@
+<%- include('header') %>
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Form Basic</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container fluid -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="form-horizontal" action="/admin/update-admin/<%= admin._id %>" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <h4 class="card-title">Edit Personal Info</h4>
+
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="fname" name="firstname" placeholder="First Name Here" value="<%= admin.firstname %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="lname" name="lastname" placeholder="Last Name Here" value="<%= admin.lastname %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Here" value="<%= admin.email %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                                <div class="col-sm-9">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="genderMale" name="gender" value="Male" <% if(admin.gender === 'Male' ){ %>checked<% } %>>
+                                        <label class="custom-control-label" for="genderMale">Male</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="genderFemale" name="gender" value="Female" <% if(admin.gender === 'Female' ){ %>checked<% } %>>
+                                        <label class="custom-control-label" for="genderFemale">Female</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="genderOther" name="gender" value="Other" <% if(admin.gender === 'Other' ){ %>checked<% } %>>
+                                        <label class="custom-control-label" for="genderOther">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="hobbies" class="col-sm-3 text-right control-label col-form-label">Hobbies</label>
+                                <div class="col-sm-9">
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" name="hobbies[]" class="custom-control-input" id="hobbyMusic" value="Music" <% if (admin.hobbies && admin.hobbies.includes('Music')) { %> checked <% } %>>
+                                        <label class="custom-control-label" for="hobbyMusic">Music</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" name="hobbies[]" class="custom-control-input" id="hobbyAdventure" value="Adventure" <% if (admin.hobbies && admin.hobbies.includes('Adventure')) { %> checked <% } %>>
+                                        <label class="custom-control-label" for="hobbyAdventure">Adventure</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mr-sm-2">
+                                        <input type="checkbox" name="hobbies[]" class="custom-control-input" id="hobbyCooking" value="Cooking" <% if (admin.hobbies && admin.hobbies.includes('Cooking')) { %> checked <% } %>>
+                                        <label class="custom-control-label" for="hobbyCooking">Cooking</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">File Upload</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="image" id="validatedCustomFile">
+                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="border-top">
+                            <div class="card-body">
+                                <input type="submit" value="Update Admin" class="btn btn-primary" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('footer') %>
