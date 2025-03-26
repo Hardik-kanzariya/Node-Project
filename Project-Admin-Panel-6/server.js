@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 app.use("/", require('./routes/index.routes'));
 
-
+ 
 app.listen(port, () => { 
     console.log(`Server started at http://localhost:${port}`);
 });

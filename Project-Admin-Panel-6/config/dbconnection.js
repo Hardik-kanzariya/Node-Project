@@ -8,4 +8,3 @@ const dbconnect = () => {
 };
 
 module.exports = dbconnect();
- 
