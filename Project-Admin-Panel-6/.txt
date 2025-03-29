@@ -1,2 +1,0 @@
-email:hk@gmail.com
-password:12345
