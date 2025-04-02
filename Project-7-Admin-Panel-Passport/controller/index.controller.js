@@ -10,7 +10,7 @@ const { sendMail } = require("../config/mailConfig");
 
             return res.redirect("/")
         }
- })
+ }) 
  }
  exports.loginPage = async (req, res) => {
     if(req.isAuthenticated()){
