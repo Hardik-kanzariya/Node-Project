@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flipkart Clone</title>
+
+  <!-- Bootstrap & FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <script src="
+  https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js
+  "></script>
+  <link href="
+  https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css
+  " rel="stylesheet">
+
+  <style>
+    header {
+      background-color: #2874f0;
+      color: white;
+      padding: 12px 20px;
+    }
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 20px;
+    }
+
+    .search-form {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .search-form input {
+      border-radius: 0;
+      border-right: none;
+    }
+
+    .search-form button {
+      border-radius: 0;
+      border-left: none;
+    }
+
+    .user-profile img {
+      background-color: #fff;
+      padding: 2px;
+    }
+
+    .btn-primary {
+      background-color: #2874f0;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .icon-group a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-group a i {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    /* Flipkart Banner */
+    #flipkartSlider .carousel-item img {
+      height: 270px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .search-form {
+        margin-top: 10px;
+        max-width: 100%;
+      }
+
+      #flipkartSlider .carousel-item img {
+        height: 160px;
+      }
+    }
+
+    .footer {
+      background-color: #212529;
+      color: #fff;
+      font-size: 14px;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    .footer a {
+      color: #bbb;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    .footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-clone {
+    background-color: #172337;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .footer-clone a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-clone a:hover {
+    color: #fff;
+  }
+
+  .footer-clone h6 {
+    font-size: 15px;
+    color: #f1f1f1;
+  }
+
+  .footer-clone ul {
+    padding-left: 0;
+  }
+
+  .footer-clone ul li {
+    margin-bottom: 6px;
+  }
+
+  .footer-clone .fa-lg {
+    color: #b0b0b0;
+    transition: color 0.3s;
+  }
+
+  .footer-clone .fa-lg:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .footer-clone {
+      text-align: center;
+    }
+
+    .footer-clone ul.d-flex {
+      justify-content: center;
+    }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="d-flex flex-wrap justify-content-between align-items-center shadow-sm">
+    <a href="/user"><h1 class="brand-title mb-0">Flipkart</h1></a>
+
+    <form method="GET" action="/user" class="d-flex search-form mt-3 mt-md-0" role="search">
+      <input type="text" name="search" class="form-control me-2" placeholder="Search products..." />
+      <button type="submit" class="btn btn-warning"><i class="fas fa-search"></i></button>
+    </form>
+
+    <div class="d-flex align-items-center mt-3 mt-md-0 icon-group">
+      <% if(!locals.user) { %>
+        <a href="/user/user-login"><i class="fa-regular fa-user"></i> Login</a>
+      <% } %>
+      <a href="/user/favourites-list"><i class="fa-regular fa-heart"></i> Favourites</a>
+      <a href="/user/cart-list"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+
+      <div class="dropdown ms-3 user-profile">
+        <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle me-2 border border-white" width="36" height="36">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item text-dark" href="/user/user-profile"><i class="fas fa-user me-2 text-primary"></i><%= locals.user.firstname %> <%= locals.user.lastname %> </a></li>
+          <li><a class="dropdown-item text-dark" href="#"><i class="fas fa-cog me-2 text-primary"></i>Change Password</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-dark" href="/user/user-logout"><i class="fas fa-power-off me-2 text-danger"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Flipkart-Style Slider -->
+  <div id="flipkartSlider" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/66707742ae00c3ae.jpeg?q=20" class="d-block w-100" alt="Banner 1">
+      </div>
+      <div class="carousel-item">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/7850424b771b8f98.jpg?q=20" class="d-block w-100" alt="Banner 2">
+      </div>
+      <div class="carousel-item">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/536e68db12a75e75.jpg?q=20" class="d-block w-100" alt="Banner 3">
+      </div>
+      <div class="carousel-item">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/544c2e1eca31c88c.jpg?q=20" class="d-block w-100" alt="Banner 3">
+      </div>
+      <div class="carousel-item">
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/a7bae201d5cb72f9.jpeg?q=20" class="d-block w-100" alt="Banner 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#flipkartSlider" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#flipkartSlider" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!-- Category Buttons -->
+  <div class="container-fluid mt-4">
+    <div class="mb-4 text-center">
+      <% const colors = ['primary', 'success', 'danger', 'info', 'warning', 'dark']; %>
+      <a class="btn btn-dark mr-2 mb-2" href="/user">All</a>
+      <% categories.forEach((category, index) => {
+        const colorClass = colors[index % colors.length]; %>
+        <a class="btn btn-<%= colorClass %> mr-2 mb-2" href="/user?category=<%= category._id %>">
+          <%= category.category %>
+        </a>
+      <% }); %>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="row">
+      <% allProducts.forEach((product) => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="<%= product.productImage %>" class="card-img-top" alt="<%= product.title %>" style="height: 400px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text text-muted"><%= product.category.category || 'Uncategorized' %></p>
+              <p class="card-text"><%= product.desc.length > 100 ? product.desc.substring(0, 100) + '...' : product.desc %></p>
+              <h6 class="text-success font-weight-bold">₹ <%= product.price %></h6>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-end">
+              <a href="/user/single-product/<%= product._id %>" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-4">
+      <nav>
+        <ul class="pagination">
+          <% if (currentPage > 1) { %>
+            <li class="page-item">
+              <a class="page-link" href="/user?page=<%= currentPage - 1 %><%= selectedCategory ? '&category=' + selectedCategory : '' %><%= searchQuery ? '&search=' + searchQuery : '' %>">&laquo;</a>
+            </li>
+          <% } else { %>
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+          <% } %>
+
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+              <a class="page-link" href="/user?page=<%= i %><%= selectedCategory ? '&category=' + selectedCategory : '' %><%= searchQuery ? '&search=' + searchQuery : '' %>"><%= i %></a>
+            </li>
+          <% } %>
+
+          <% if (currentPage < totalPages) { %>
+            <li class="page-item">
+              <a class="page-link" href="/user?page=<%= currentPage + 1 %><%= selectedCategory ? '&category=' + selectedCategory : '' %><%= searchQuery ? '&search=' + searchQuery : '' %>">&raquo;</a>
+            </li>
+          <% } else { %>
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+ <%- include('user-footer') %>
+
+  <!-- Optional JS for Slider Settings -->
+  <script>
+    const slider = document.querySelector('#flipkartSlider');
+    if (slider) {
+      new bootstrap.Carousel(slider, {
+        interval: 3000,
+        ride: 'carousel',
+        pause: false,
+        wrap: true
+      });
+    }
+  </script>
+
+</body>
+</html>

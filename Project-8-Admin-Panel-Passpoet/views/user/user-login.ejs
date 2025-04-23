@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flipkart Login Clone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f1f3f6;
+    }
+
+    .login-wrapper {
+      margin: 50px auto;
+      max-width: 800px;
+      display: flex;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .login-left {
+      background-color: #2874f0;
+      color: white;
+      padding: 40px 30px;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-left h2 {
+      font-weight: 600;
+    }
+
+    .login-left p {
+      font-size: 14px;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    .login-right {
+      background-color: white;
+      padding: 40px 30px;
+      width: 60%;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    .form-text {
+      font-size: 13px;
+      color: gray;
+    }
+
+    .btn-login {
+      background-color: #fb641b;
+      color: white;
+      border: none;
+    }
+
+    .btn-login:hover {
+      background-color: #f55b15;
+    }
+
+    .text-link {
+      color: #2874f0;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .or-separator {
+      text-align: center;
+      margin: 20px 0;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      .login-wrapper {
+        flex-direction: column;
+        max-width: 90%;
+      }
+
+      .login-left,
+      .login-right {
+        width: 100%;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper bg-white rounded-3 overflow-hidden">
+    <!-- Left -->
+    <div class="login-left">
+      <h2>Login</h2>
+      <p>Get access to your Orders, Wishlist and Recommendations</p>
+      <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg" class="img-fluid mt-4" alt="Login Illustration" />
+    </div>
+
+    <!-- Right -->
+    <div class="login-right">
+      <form action="/user/user-login" method="post">
+        <div class="mb-3">
+          <input type="text" name="email" class="form-control" placeholder="Enter Email or Mobile Number" required />
+        </div>
+
+        <div class="mb-2">
+          <input type="password" name="password" class="form-control" placeholder="Enter Password" required />
+        </div>
+
+        <div class="mb-3 text-end">
+          <span class="text-link">Forgot?</span>
+        </div>
+
+        <button type="submit" class="btn btn-login w-100 mb-3">Login</button>
+
+        <div class="or-separator">OR</div>
+
+        <button type="button" class="btn btn-outline-secondary w-100">
+          <i class="fa-brands fa-google me-2"></i> Request OTP
+        </button>
+      </form>
+
+      <div class="mt-4 text-center">
+        New to Flipkart? <a href="/user/user-register" class="text-link">Create an account</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

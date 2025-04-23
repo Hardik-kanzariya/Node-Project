@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css
+    " rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container-fluid mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card shadow-lg border-0">
+                        <div class="row no-gutters">
+                            <!-- Product Image -->
+                            <div class="col-md-5">
+                                <img src="<%= product.productImage %>" alt="<%= product.title %>" class="img-fluid h-100 w-100" style="object-fit: cover; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;">
+                            </div>
+    
+                            <!-- Product Details -->
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h2 class="card-title font-weight-bold"><%= product.title %></h2>
+                                    
+                                    <p class="text-muted"><%= product.desc %></p>
+    
+                                    <hr>
+    
+                                    <div class="mb-2">
+                                        <strong>Category: </strong> <%= product.category.category || 'N/A' %><br>
+                                        <strong>Subcategory: </strong> <%= product.subcategory.subCategory || 'N/A' %><br>
+                                        <strong>Extra Category: </strong> <%= product.extracategory.extraCategory || 'N/A' %>
+                                    </div>
+    
+                                    <div class="mb-3">
+                                        <strong>Price:</strong> <span class="text-success h5">₹ <%= product.price %></span><br>
+                                        <strong>Available Quantity:</strong> <%= product.quantity %> units
+                                    </div>
+    
+                                    <div class="mt-4">
+                                        <a href="/user/add-cart/<%= product._id %>" class="btn btn-warning">Add to Cart</a>
+                                        <a href="/user/add-favorite/<%= product._id %>" class="btn btn-warning">Add to Favorite</a>
+                                        <a href="/user" class="btn btn-secondary ml-2">Back to List</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+
+
+<%- include('user-footer') %>
