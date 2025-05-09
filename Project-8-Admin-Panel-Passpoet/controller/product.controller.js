@@ -108,13 +108,15 @@ exports.editProductPage = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
+    console.log("Product ID:", product);
+    console.log("Request Body:", req.body);
     if (product) {
       if (req.file) {
         imagePath = "";
         if (product.productImage !== "") {
-          ImagePath = path.join(__dirname, "..", "uploads", product.productImage);
+          imagePath = path.join(__dirname, "..", "uploads", product.productImage);
           try {
-            await fs.unlinkSync(ImagePath);
+            await fs.unlinkSync(imagePath);
           } catch (error) {
             console.log("Image Not Found...");
           }
@@ -129,7 +131,7 @@ exports.updateProduct = async (req, res) => {
 
       if (updateProduct) {
         req.flash("success", "Product updated successfully!");
-        return res.redirect(`/product/edit-product/${product._id}`);
+        return res.redirect(`/product/view-product`);
       } else {
         req.flash("error", "Failed to update product!");
         return res.redirect("back");

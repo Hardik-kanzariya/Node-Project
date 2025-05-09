@@ -182,17 +182,19 @@
       <a href="/user/favourites-list"><i class="fa-regular fa-heart"></i> Favourites</a>
       <a href="/user/cart-list"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
 
-      <div class="dropdown ms-3 user-profile">
-        <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle me-2 border border-white" width="36" height="36">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item text-dark" href="/user/user-profile"><i class="fas fa-user me-2 text-primary"></i><%= locals.user.firstname %> <%= locals.user.lastname %> </a></li>
-          <li><a class="dropdown-item text-dark" href="#"><i class="fas fa-cog me-2 text-primary"></i>Change Password</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-dark" href="/user/user-logout"><i class="fas fa-power-off me-2 text-danger"></i>Logout</a></li>
-        </ul>
-      </div>
+      <% if (locals.user) { %>
+        <div class="dropdown ms-3 user-profile">
+          <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle me-2 border border-white" width="36" height="36">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item text-dark" href="/user/user-profile"><i class="fas fa-user me-2 text-primary"></i> <%= locals.user.firstname %> <%= locals.user.lastname %> </a></li>
+            <li><a class="dropdown-item text-dark" href="#"><i class="fas fa-cog me-2 text-primary"></i>Change Password</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-dark" href="/user/user-logout"><i class="fas fa-power-off me-2 text-danger"></i>Logout</a></li>
+          </ul>
+        </div>
+        <% } %>
     </div>
   </header>
 

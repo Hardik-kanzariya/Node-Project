@@ -9,7 +9,7 @@ routes.post("/add-product", Product.uploadImage, addNewProduct);
 routes.get("/view-product", getAllProducts);
 routes.get("/single-product/:id", getProduct);
 routes.get("/edit-product/:id", editProductPage);
-routes.post("/update-product/:id",updateProduct);
+routes.post("/update-product/:id",Product.uploadImage,updateProduct);
 routes.get("/delete-product/:id", deleteProduct);
 
 
